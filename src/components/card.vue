@@ -1,7 +1,7 @@
 <template>
   <div class="card" style="width: 18rem">
     <div class="card-body">
-      <h5 class="card-title text-dark">{{ title }}</h5>
+      <h5 class="card-title text-dark"><strong>Title</strong>: {{ title }}</h5>
       <p class="card-text text-dark">
         <strong>Description: </strong>{{ description }}
       </p>
@@ -36,10 +36,10 @@ import { PostController } from "../controllers/post.controller";
 export default {
   props: ["id", "title", "description", "created"],
   methods: {
-    deletePost(id) {
-      alert("delete post");
-      PostController.delete(id);
-      this.$emit("delete", id);
+    async deletePost(id) {
+      const res = await PostController.delete(id);
+      console.log(res);
+      alert(res);
     },
   },
 };
